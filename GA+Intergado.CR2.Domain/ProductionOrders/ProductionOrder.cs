@@ -4,10 +4,11 @@ using GA_Intergado.CR2.Domain.ProductionOrders.ValueObjects;
 using GA_Intergado.CR2.Domain.Productions.ValueObjects;
 using GA_Intergado.CR2.Domain.Recipes.ValueObjects;
 using GA_Intergado.CR2.Domain.Users.ValueObjects;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GA_Intergado.CR2.Domain.ProductionOrders
 {
+    [NotMapped]
     public sealed class ProductionOrder : AggregateRoot<ProductionOrderId>
     {
         public readonly List<ProductionOrderIngredient> _productionOrderIngredients = new();
@@ -25,8 +26,8 @@ namespace GA_Intergado.CR2.Domain.ProductionOrders
             _productionOrderIngredients = productionOrderIngredients;
         }
 
-        public RecipeId RecipeId { get; }
-        public decimal ExpectedAmountKg { get; }
+        public RecipeId RecipeId { get; private set; }
+        public decimal ExpectedAmountKg { get; private set; }
         public IReadOnlyList<ProductionOrderIngredient> ProductionOrderIngredients => _productionOrderIngredients.AsReadOnly();
         public IReadOnlyList<ProductionId> ProductionIds => _productionIds.AsReadOnly();
         public static ProductionOrder Create(

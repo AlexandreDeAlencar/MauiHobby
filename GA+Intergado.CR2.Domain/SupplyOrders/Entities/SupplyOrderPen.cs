@@ -3,10 +3,11 @@ using GA_Intergado.CR2.Domain.Pens.ValueObjects;
 using GA_Intergado.CR2.Domain.Supplies.ValueObjects;
 using GA_Intergado.CR2.Domain.SupplyOrders.ValueObjects;
 using GA_Intergado.CR2.Domain.Users.ValueObjects;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GA_Intergado.CR2.Domain.SupplyOrders.Entities
 {
+    [NotMapped]
     public sealed class SupplyOrderPen : AggregateRoot<SupplyOrderPenId>
     {
         private readonly List<SupplyPenId> _supplyPenIds = new();
@@ -21,8 +22,8 @@ namespace GA_Intergado.CR2.Domain.SupplyOrders.Entities
             PenId= penId;
             ExpectedAmountKg = expectedAmountKg;
         }
-        public PenId PenId { get; }
-        public decimal ExpectedAmountKg { get; }
+        public PenId PenId { get; private set; }
+        public decimal ExpectedAmountKg { get; private set; }
         public IReadOnlyList<SupplyPenId> SupplyPenIds => _supplyPenIds.AsReadOnly();
         public static SupplyOrderPen Create(
             UserId modifierUserId

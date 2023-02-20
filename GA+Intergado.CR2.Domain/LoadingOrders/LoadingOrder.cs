@@ -4,9 +4,11 @@ using GA_Intergado.CR2.Domain.LoadingOrders.ValueObjects;
 using GA_Intergado.CR2.Domain.Loadings.ValueObjects;
 using GA_Intergado.CR2.Domain.Productions.ValueObjects;
 using GA_Intergado.CR2.Domain.Users.ValueObjects;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GA_Intergado.CR2.Domain.LoadingOrders
 {
+    [NotMapped]
     public sealed class LoadingOrder : AggregateRoot<LoadingOrderStepId>
     {
         private readonly List<LoadingOrderStep> _loadingOrderSteps = new();
@@ -24,8 +26,8 @@ namespace GA_Intergado.CR2.Domain.LoadingOrders
             ProductionId = productionId;
             _loadingOrderSteps = loadingOrderSteps;
         }
-        public decimal ExapectedAmountKg { get; }
-        public ProductionId ProductionId { get; }
+        public decimal ExapectedAmountKg { get; private set; }
+        public ProductionId ProductionId { get; private set; }
         private IReadOnlyList<LoadingOrderStep> LoadingOrderSteps => _loadingOrderSteps.AsReadOnly();
         private IReadOnlyList<LoadingId> LoadingIds => _loadingIds.AsReadOnly();
         public static LoadingOrder Create(

@@ -7,12 +7,14 @@ using GA_Intergado.CR2.Domain.SupplyOrders.ValueObjects;
 using GA_Intergado.CR2.Domain.Users.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GA_Intergado.CR2.Domain.Supplies
 {
+    [NotMapped]
     public sealed class Supply : AggregateRoot<SupplyId>
     {
         private readonly List<SupplyPen> _supplyPens = new();
@@ -30,9 +32,9 @@ namespace GA_Intergado.CR2.Domain.Supplies
             AmountKg = amountKg;
             _supplyPens = supplyPens;
         }
-        public SupplyOrderId SupplyOrderId { get; }
-        public LoadingId LoadingId { get; }
-        public AmountKg AmountKg { get; }
+        public SupplyOrderId SupplyOrderId { get; private set; }
+        public LoadingId LoadingId { get; private set; }
+        public AmountKg AmountKg { get; private set; }
         public IReadOnlyList<SupplyPen> SupplyPens => _supplyPens.AsReadOnly();
         public static Supply Create(
             UserId modifierUserId

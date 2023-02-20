@@ -1,14 +1,15 @@
-﻿using GA_Intergado.CR2.Domain.Users.ValueObjects;
+﻿using GA_Intergado.CR2.Domain.Shared.Common;
+using GA_Intergado.CR2.Domain.Users.ValueObjects;
 
 namespace GA_Intergado.CR2.Domain.Common.Models
 {
     public abstract class Entity<TId> : IEquatable<Entity<TId>>
-    where TId : notnull
+    where TId : notnull, ValueObject
     {
         public TId Id { get; protected set; }
-        public DateTime LastModifiedDateTime { get; }
-        public DateTime status { get; }
-        public UserId ModifierUserId { get; }
+        public DateTime LastModifiedDateTime { get; private set; }
+        public StatusType status { get; private set; }
+        public UserId ModifierUserId { get; private set; }
         protected Entity(
                 TId id
                 , UserId modifierUserId)
@@ -42,5 +43,13 @@ namespace GA_Intergado.CR2.Domain.Common.Models
         {
             return Id.GetHashCode();
         }
+
+        #pragma warning disable CS8618
+        protected Entity()
+        {
+
+        }
+
+        #pragma warning restore CS8618
     }
 }

@@ -5,9 +5,11 @@ using GA_Intergado.CR2.Domain.Loadings.Entities;
 using GA_Intergado.CR2.Domain.Loadings.ValueObjects;
 using GA_Intergado.CR2.Domain.Supplies.ValueObjects;
 using GA_Intergado.CR2.Domain.Users.ValueObjects;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GA_Intergado.CR2.Domain.Loadings
 {
+    [NotMapped]
     public sealed class Loading : AggregateRoot<LoadingId>
     {
         private readonly List<LoadingStep> _loadingSteps = new();
@@ -23,8 +25,8 @@ namespace GA_Intergado.CR2.Domain.Loadings
             AmountKg= amountKg;
             _loadingSteps = loadingSteps;
         }
-        public LoadingOrderId LoadingOrderId { get; }
-        public AmountKg AmountKg { get; }
+        public LoadingOrderId LoadingOrderId { get; private set; }
+        public AmountKg AmountKg { get; private set; }
         private IReadOnlyList<LoadingStep> LoadingSteps => _loadingSteps.AsReadOnly();
         private IReadOnlyList<SupplyId> SupplyIds => _supplyIds.AsReadOnly();
         public static Loading Create(

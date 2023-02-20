@@ -3,9 +3,11 @@ using GA_Intergado.CR2.Domain.ProductionOrders.ValueObjects;
 using GA_Intergado.CR2.Domain.Recipes.Entities;
 using GA_Intergado.CR2.Domain.Recipes.ValueObjects;
 using GA_Intergado.CR2.Domain.Users.ValueObjects;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GA_Intergado.CR2.Domain.Recipes
 {
+    [NotMapped]
     public sealed class Recipe : AggregateRoot<RecipeId>
     {
         private readonly List<RecipeIngredient> _recipeIngredients = new();
@@ -26,10 +28,10 @@ namespace GA_Intergado.CR2.Domain.Recipes
             Version = version;
             _recipeIngredients = recipeIngredients;
         }
-        public string Name { get; }
-        public string NameAbbreviation { get; }
-        public int MixTimeMinute { get; }
-        public int Version { get; }
+        public string Name { get; private set; }
+        public string NameAbbreviation { get; private set; }
+        public int MixTimeMinute { get; private set; }
+        public int Version { get; private set; }
         public IReadOnlyList<RecipeIngredient> RecipeIngredients => _recipeIngredients.AsReadOnly();
         public IReadOnlyList<ProductionOrderId> ProductionOrderIds => _productionOrderIds.AsReadOnly();
         public static Recipe Create(
@@ -52,5 +54,13 @@ namespace GA_Intergado.CR2.Domain.Recipes
                , recipeIngredients
                 );
         }
+
+        #pragma warning disable CS8618
+        protected Recipe()
+        {
+
+        }
+
+        #pragma warning restore CS8618
     }
 }

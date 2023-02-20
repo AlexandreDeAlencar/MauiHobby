@@ -15,7 +15,7 @@ namespace GA_Intergado.CR2.Domain.IngredientPlaces
         {
             Name = name;
         }
-        public string Name { get; }
+        public string Name { get; private set; }
         public IReadOnlyList<IngredientId> IngredientIds => _ingredientIds.AsReadOnly();
         public static IngredientPlace Create(
              UserId modifierUserId
@@ -29,5 +29,13 @@ namespace GA_Intergado.CR2.Domain.IngredientPlaces
                 , name
                 );
         }
+
+        #pragma warning disable CS8618
+        private IngredientPlace()
+        {
+
+        }
+
+        #pragma warning restore CS8618
     }
 }

@@ -18,9 +18,9 @@ namespace GA_Intergado.CR2.Domain.Common.ValueObjects
             FinalWeightKg = finalWeightKg;
             Value = finalWeightKg - initialWeightKg;
         }
-        public decimal InitialWeightKg { get;}
-        public decimal FinalWeightKg { get;}
-        public decimal Value { get; }
+        public decimal InitialWeightKg { get; private set;}
+        public decimal FinalWeightKg { get; private set;}
+        public decimal Value { get; private set; }
 
         public static AmountKg CreateNew(
             decimal initialWeightKg

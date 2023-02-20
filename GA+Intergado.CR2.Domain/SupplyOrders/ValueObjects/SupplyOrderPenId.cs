@@ -3,15 +3,17 @@ using GA_Intergado.CR2.Domain.Loadings.ValueObjects;
 using GA_Intergado.CR2.Domain.Supplies.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GA_Intergado.CR2.Domain.SupplyOrders.ValueObjects
 {
+    [NotMapped]
     public sealed class SupplyOrderPenId : ValueObject
     {
-        public Guid Value { get; }
+        public Guid Value { get; private set; }
 
         private SupplyOrderPenId(Guid value)
         {

@@ -5,9 +5,11 @@ using GA_Intergado.CR2.Domain.ProductionOrders.ValueObjects;
 using GA_Intergado.CR2.Domain.Shared.Productions;
 using GA_Intergado.CR2.Domain.Users.ValueObjects;
 using GA_Intergado.CR2.Domain.LoadingOrders.ValueObjects;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GA_Intergado.CR2.Domain.Productions.Entities
 {
+    [NotMapped]
     public sealed class ProductionIngredient : Entity<ProductionIngredientId>
     {
         private readonly List<LoadingOrderStepId> _loadingOrderStepIds = new();
@@ -23,9 +25,9 @@ namespace GA_Intergado.CR2.Domain.Productions.Entities
             AmountKg = amountKg;
             ProductionIngredientStep = productionIngredientStep;
         }
-        public ProductionOrderIngredientId ProductionOrderIngredientId { get; }
-        public AmountKg AmountKg { get; }
-        public ProductionIngredientStep ProductionIngredientStep { get; }
+        public ProductionOrderIngredientId ProductionOrderIngredientId { get; private set; }
+        public AmountKg AmountKg { get; private set; }
+        public ProductionIngredientStep ProductionIngredientStep { get; private set; }
         public IReadOnlyList<LoadingOrderStepId> LoadingOrderStepIds => _loadingOrderStepIds.AsReadOnly();
         public static ProductionIngredient Create(
             UserId modifierUserId

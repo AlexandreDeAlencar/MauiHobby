@@ -1,10 +1,12 @@
 ﻿using GA_Intergado.CR2.Domain.Common.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GA_Intergado.CR2.Domain.Pens.ValueObjects
 {
+    [NotMapped]
     public sealed class PenId : ValueObject
     {
-        public Guid Value { get; }
+        public Guid Value { get; private set; }
 
         private PenId(Guid value)
         {

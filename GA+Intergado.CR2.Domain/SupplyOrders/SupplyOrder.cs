@@ -8,12 +8,14 @@ using GA_Intergado.CR2.Domain.SupplyTimes.ValueObjects;
 using GA_Intergado.CR2.Domain.Users.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GA_Intergado.CR2.Domain.SupplyOrders
 {
+    [NotMapped]
     public sealed class SupplyOrder : AggregateRoot<SupplyOrderId>
     {
         private readonly List<SupplyOrderPen> _supplyOrderPens = new();
@@ -30,8 +32,8 @@ namespace GA_Intergado.CR2.Domain.SupplyOrders
             ExpectedAmountKg = expectedAmountKg;
             _supplyOrderPens = supplyOrderPens;
         }
-        public SupplyTimeId SupplyTimeId { get; }
-        public decimal ExpectedAmountKg { get; }
+        public SupplyTimeId SupplyTimeId { get; private set; }
+        public decimal ExpectedAmountKg { get; private set; }
         public IReadOnlyList<SupplyOrderPen> SupplyOrderPens => _supplyOrderPens.AsReadOnly();
         public IReadOnlyList<SupplyId> SupplyIds => _supplysIds.AsReadOnly();
         public static SupplyOrder Create(

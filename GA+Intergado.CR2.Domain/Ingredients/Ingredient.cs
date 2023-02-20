@@ -24,11 +24,11 @@ namespace GA_Intergado.CR2.Domain.Ingredients
             PlaceId = placeId;
             IngredientType = ingredientType;
         }
-        public string Name { get; }
-        public string NameAbbreviation { get; }
-        public decimal DryMatterPercentage { get; }
-        public IngredientPlaceId PlaceId { get; } 
-        public IngredientType IngredientType { get; }
+        public string Name { get; private set; }
+        public string NameAbbreviation { get; private set; }
+        public decimal DryMatterPercentage { get; private set; }
+        public IngredientPlaceId PlaceId { get; private set; } 
+        public IngredientType IngredientType { get; private set; }
         public IReadOnlyList<RecipeIngredientId> RecipeIngredientIds => _recipeIngredientIds.AsReadOnly();
         public static Ingredient Create(
             UserId modifierUserId
@@ -48,5 +48,13 @@ namespace GA_Intergado.CR2.Domain.Ingredients
                 , ingredientType
                 );
         }
+
+        #pragma warning disable CS8618
+        protected Ingredient()
+        {
+
+        }
+
+        #pragma warning restore CS8618
     }
 }

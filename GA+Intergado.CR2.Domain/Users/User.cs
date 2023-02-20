@@ -23,9 +23,9 @@ namespace GA_Intergado.CR2.Domain.Users
             this.Password = password;
             this.UserType = userType;
         }
-        public string UserName { get; }
-        public string Password { get; }
-        public UserType UserType { get; }
+        public string UserName { get; private set; }
+        public string Password { get; private set; }
+        public UserType UserType { get; private set; }
         public static User Create(
             UserId modifierUserId
             , string userName

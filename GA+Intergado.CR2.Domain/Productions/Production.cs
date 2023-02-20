@@ -6,9 +6,11 @@ using GA_Intergado.CR2.Domain.Productions.Entities;
 using GA_Intergado.CR2.Domain.Productions.ValueObjects;
 using GA_Intergado.CR2.Domain.Shared.Productions;
 using GA_Intergado.CR2.Domain.Users.ValueObjects;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GA_Intergado.CR2.Domain.Productions
 {
+    [NotMapped]
     public sealed class Production : AggregateRoot<ProductionId>
     {
         public readonly List<ProductionIngredient> _productionIngredients = new();
@@ -27,9 +29,9 @@ namespace GA_Intergado.CR2.Domain.Productions
             ProductionStep = productionStep;
             _productionIngredients = productionIngredients;
         }
-        public ProductionOrderId ProductionOrderId { get; }
-        public AmountKg AmountKg { get; }
-        public ProductionStep ProductionStep { get; }
+        public ProductionOrderId ProductionOrderId { get; private set; }
+        public AmountKg AmountKg { get; private set; }
+        public ProductionStep ProductionStep { get; private set; }
         public IReadOnlyList<ProductionIngredient> ProductionIngredients => _productionIngredients.AsReadOnly();
         public IReadOnlyList<LoadingOrderId> LoadingOrderIds => _loadingOrderId.AsReadOnly();
         public static Production Create(

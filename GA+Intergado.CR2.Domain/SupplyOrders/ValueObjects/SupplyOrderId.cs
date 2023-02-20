@@ -1,10 +1,12 @@
 ﻿using GA_Intergado.CR2.Domain.Common.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GA_Intergado.CR2.Domain.SupplyOrders.ValueObjects
 {
+    [NotMapped]
     public sealed class SupplyOrderId : ValueObject
     {
-        public Guid Value { get; }
+        public Guid Value { get; private set; }
 
         private SupplyOrderId(Guid value)
         {

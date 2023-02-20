@@ -1,11 +1,13 @@
 ﻿using GA_Intergado.CR2.Domain.LoadingPlaces.ValueObjects;
 using GA_Intergado.CR2.Domain.Shared.Common;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GA_Intergado.CR2.Domain.IngredientPlaces.ValueObjects
 {
+    [NotMapped]
     public sealed class IngredientPlaceId : LoadingPlaceId
     {
-        public Guid Value { get; }
+        public Guid Value { get; private set; }
 
         private IngredientPlaceId(Guid value) : base(value, LoadingPlaceType.IngredientPlace)
         {

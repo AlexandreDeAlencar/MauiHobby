@@ -6,12 +6,14 @@ using GA_Intergado.CR2.Domain.SupplyOrders.ValueObjects;
 using GA_Intergado.CR2.Domain.Users.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GA_Intergado.CR2.Domain.Supplies.Entities
 {
+    [NotMapped]
     public sealed class SupplyPen : Entity<SupplyPenId>
     {
         private SupplyPen(SupplyPenId id
@@ -24,8 +26,8 @@ namespace GA_Intergado.CR2.Domain.Supplies.Entities
             SupplyOrderPenId = supplyOrderPenId;
             AmountKg = amountKg;
         }
-        public SupplyOrderPenId SupplyOrderPenId { get; }
-        public AmountKg AmountKg { get; }
+        public SupplyOrderPenId SupplyOrderPenId { get; private set; }
+        public AmountKg AmountKg { get; private set; }
         public static SupplyPen Create(
              UserId modifierUserId
             , SupplyOrderPenId supplyOrderPenId

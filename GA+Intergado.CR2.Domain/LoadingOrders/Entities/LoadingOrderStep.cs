@@ -24,8 +24,8 @@ namespace GA_Intergado.CR2.Domain.LoadingOrders.Entities
             ExpectedAmountKg = expectedAmountKg;
             _productionIngredientIds = productionIngredientIds;
         }
-        public LoadingPlaceId LoadingPlaceId { get; }
-        public decimal ExpectedAmountKg { get; }
+        public LoadingPlaceId LoadingPlaceId { get; private set; }
+        public decimal ExpectedAmountKg { get; private set; }
         public IReadOnlyList<ProductionIngredientId> ProductionIngredientIds => _productionIngredientIds.AsReadOnly();
         public IReadOnlyList<LoadingStepId> LoadingStepIds => _loadingStepIds.AsReadOnly();
         public static LoadingOrderStep Create(

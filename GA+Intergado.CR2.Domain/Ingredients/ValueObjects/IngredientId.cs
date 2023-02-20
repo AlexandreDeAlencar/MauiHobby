@@ -1,10 +1,12 @@
 ﻿using GA_Intergado.CR2.Domain.Common.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GA_Intergado.CR2.Domain.Ingredients.ValueObjects
 {
+    [NotMapped]
     public sealed class IngredientId : ValueObject
     {
-        public Guid Value { get; }
+        public Guid Value { get; private set; }
 
         private IngredientId(Guid value)
         {
