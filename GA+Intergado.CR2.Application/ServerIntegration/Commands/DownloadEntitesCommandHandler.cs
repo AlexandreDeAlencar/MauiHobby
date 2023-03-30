@@ -1,82 +1,83 @@
-﻿using ErrorOr;
+﻿using AutoMapper;
+using ErrorOr;
 using GA_Intergado.CR2.App.Common.UnitOfWork;
-using GA_Intergado.CR2.App.ServerIntegration.Commom;
+using GA_Intergado.CR2.App.ServerIntegration.DTOs;
 using GA_Intergado.CR2.App.ServerIntegration.Services;
-using GA_Intergado.CR2.Domain.Common.Models;
-using GA_Intergado.CR2.Domain.Persistence.Base;
+using GA_Intergado.CR2.Domain.Common.Persistence.Base;
 using MediatR;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GA_Intergado.CR2.App.ServerIntegration.Commands
 {
-    public class DownloadEtitiesCommandHandler : IRequestHandler<DownloadEtitiesCommand, string> 
+    public class DownloadEtitiesCommandHandler : IRequestHandler<DownloadEtitiesCommand, ErrorOr<Created>> 
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
         private readonly IIntegrationService _integrationService;
 
-        public DownloadEtitiesCommandHandler(IUnitOfWork unitOfWork, IIntegrationService integrationService)
+        public DownloadEtitiesCommandHandler(IMapper mapper, IUnitOfWork unitOfWork, IIntegrationService integrationService)
         {
             _unitOfWork = unitOfWork;
             _integrationService = integrationService;
+            _mapper = mapper;
         }
 
-        public async Task<string> Handle(DownloadEtitiesCommand request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<Created>> Handle(DownloadEtitiesCommand request, CancellationToken cancellationToken)
         {
-            //if (_unitOfWork == null)
-            //{
-            //    return Error.Validation("Componente de persistência não inicializado");
-            //}
-            //else if (_integrationService == null)
-            //{
-            //    return Error.Validation("Componente de comunicação para sincronismo não inicializado");
-            //}
-            //else
-            //{
+            if (_unitOfWork == null)
+            {
+                return Error.Validation("Componente de persistência não inicializado");
+            }
+            else if (_integrationService == null)
+            {
+                return Error.Validation("Componente de comunicação para sincronismo não inicializado");
+            }
+            else
+            {
                 int total = request.ItemEntities.Count;
                 int idx = 1;
                 MethodInfo syncMethod = this.GetType().GetTypeInfo().GetDeclaredMethod("Receive");
                 try
                 {
-                    foreach (ItemEntityData t in request.ItemEntities)
+                    foreach (ServerIntegrationItemDTO t in request.ItemEntities)
                     {
-                        string result = (string)syncMethod.MakeGenericMethod(t.EntityType).Invoke(
+                        syncMethod.MakeGenericMethod(t.EntityTypeSource, t.EntityTypeDestination).Invoke(
                             this,
                             new object[3] {
                             _unitOfWork,
                             _integrationService,
                             t
                             });
-                        return result;
                     }
                 }
                 catch (Exception ex)
                 {
-                    //return Error.Failure("ServiceSincronismo", $"RecebeDados:{ ex.Message}");
+                    return Error.Failure("ServiceSincronismo", $"RecebeDados:{ex.Message}");
                 }
-            //}
+            }
 
-            return "";
+            return Result.Created;
         }
 
-        string Receive<T>(
+        void Receive<T, R>(
           IUnitOfWork unitOfWork,
           IIntegrationService integrationService,
-          ItemEntityData entidade) where T : class
+          ServerIntegrationItemDTO entidade) 
+            where T : class, new()
+            where R : class, new()
         {
             try
             {
-                string listaRecebidos = integrationService.Download<T>(entidade);
-                return listaRecebidos;
+                List<T> sourceList = integrationService.Download<T>(entidade);
 
-                //foreach (T registro in listaRecebidos)
-                //{
-                //    unitOfWork.InsertOrUpdate(registro.GetType(), registro);
-                //}
+                foreach (T sourceobject in sourceList)
+                {
+                    R destObject = _mapper.Map<R>(sourceobject);    
+                    unitOfWork
+                        .CreateRepositoryDefault<R>()
+                        .Add(destObject);
+                }
             }
             catch (Exception ex)
             {

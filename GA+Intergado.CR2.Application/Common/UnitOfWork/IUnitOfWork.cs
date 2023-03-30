@@ -1,17 +1,18 @@
 ﻿using GA_Intergado.CR2.Domain.IngredientPlaces;
 using GA_Intergado.CR2.Domain.Ingredients;
-using GA_Intergado.CR2.Domain.Persistence.Base;
+using GA_Intergado.CR2.Domain.Common.Persistence.Base;
 using GA_Intergado.CR2.Domain.Recipes;
+using GA_Intergado.CR2.Domain.Users;
 
 namespace GA_Intergado.CR2.App.Common.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IIngredientPlaceRepository IngredientPlaceRepository { get; }
-        IIngredientRepository IngredientRepository { get; }
-        IRecipeRepository ReceitaRepository { get; }
-
-        int InsertOrUpdate(Type type, object obj);
+        IIngredientPlaceRepository IngredientPlaces { get; }
+        IIngredientRepository Ingredients { get; }
+        IRecipeRepository Recipes { get; }
+        IUserRepository Users { get; }
+        public IRepositoryDefault<T> CreateRepositoryDefault<T>() where T : class, new();
         int Complete();
     }
 }

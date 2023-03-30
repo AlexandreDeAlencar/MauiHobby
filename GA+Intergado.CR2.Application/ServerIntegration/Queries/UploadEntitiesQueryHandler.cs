@@ -3,7 +3,7 @@ using GA_Intergado.CR2.App.Common.UnitOfWork;
 using GA_Intergado.CR2.App.ServerIntegration.Commands;
 using GA_Intergado.CR2.App.ServerIntegration.Services;
 using GA_Intergado.CR2.Domain.Common.Models;
-using GA_Intergado.CR2.Domain.Persistence.Base;
+using GA_Intergado.CR2.Domain.Common.Persistence.Base;
 using MediatR;
 using System;
 using System.Collections.Generic;

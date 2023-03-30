@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using GA_Intergado.CR2.App.ServerIntegration.DTOs;
+using MediatR;
 
 namespace GA_Intergado.CR2.App.Login.Command
 {
-    internal class LoginCommand
-    {
-    }
+    public record LoginCommand(string Login, string Password) : IRequest<ErrorOr<Success>>;
 }
