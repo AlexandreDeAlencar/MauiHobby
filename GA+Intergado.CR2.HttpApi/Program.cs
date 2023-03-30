@@ -1,5 +1,5 @@
-
 using GA_Intergado.CR2.App;
+using GA_Intergado.CR2.EntityFrameworkCore;
 using GA_Intergado.CR2.EntityFrameworkCore.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,10 +17,10 @@ namespace GA_Intergado.CR2.HttpApi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<MyDbContext>(o => o.UseSqlite("Data Source=C:\\sqlite\\cr2database.db"));
-            builder.Services
-               .AddIntegrationApi2()
-               .AddApplication();
+            builder.Services.AddDbContext<MyDbContext>();
+            //builder.Services
+            //   .AddApplication()
+            //   .AddEntityFramework();
 
 
             var app = builder.Build();

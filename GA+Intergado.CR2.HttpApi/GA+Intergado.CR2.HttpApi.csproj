@@ -19,10 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GA+Intergado.CR2.Application\GA+Intergado.CR2.App.csproj" />
     <ProjectReference Include="..\GA+Intergado.CR2.Domain.Shared\GA+Intergado.CR2.Domain.Shared.csproj" />
     <ProjectReference Include="..\GA+Intergado.CR2.Domain\GA+Intergado.CR2.Domain.csproj" />
     <ProjectReference Include="..\GA+Intergado.CR2.EntityFrameworkCore\GA+Intergado.CR2.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\GA+Intergado.CR2.IntegrationApi2\GA+Intergado.CR2.IntegrationApi2.csproj" />
+    <ProjectReference Include="..\GA+Intergado.CR2.ExternalDevices\GA+Intergado.CR2.ExternalDevices.csproj" />
+    <ProjectReference Include="..\GA+Intergado.CR2.LegacyIntegrationService\GA+Intergado.CR2.IntegrationService.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 using GA_Intergado.CR2.App.ServerIntegration.Commands;
-using GA_Intergado.CR2.App.ServerIntegration.Commom;
+using GA_Intergado.CR2.App.ServerIntegration.DTOs;
 using GA_Intergado.CR2.Domain.Recipes;
+using GA_Intergado.CR2.IntegrationService.Model;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,9 +26,9 @@ namespace GA_Intergado.CR2.HttpApi.Controllers
         [HttpGet(Name = "GetEntities")]
         public async void Get()
         {
-            List<ItemEntityData> ListaParaDownload = new List<ItemEntityData>
+            List<ServerIntegrationItemDTO> ListaParaDownload = new List<ServerIntegrationItemDTO>
             {
-                new ItemEntityData(typeof(Recipe),"Recipes","view_receitas")
+                new ServerIntegrationItemDTO(typeof(Recipe), typeof(ReceitaCR1VM),"Recipes","view_receitas")
 
             };
 
@@ -35,6 +36,11 @@ namespace GA_Intergado.CR2.HttpApi.Controllers
 
 
             var RecipeValues = await _mediator.Send(command);
+
+            foreach(ServerIntegrationItemDTO a in ListaParaDownload)
+            {
+
+            }
 
         }
     }
