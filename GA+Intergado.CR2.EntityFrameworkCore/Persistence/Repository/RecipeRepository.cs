@@ -1,5 +1,5 @@
-﻿using GA_Intergado.CR2.Domain.IngredientPlaces;
-using GA_Intergado.CR2.Domain.Persistence.Base;
+﻿using GA_Intergado.CR2.Domain.Common.Persistence.Base;
+using GA_Intergado.CR2.Domain.IngredientPlaces;
 using GA_Intergado.CR2.Domain.Recipes;
 using GA_Intergado.CR2.EntityFrameworkCore.Persistence.Repository.Base;
 using System;
@@ -10,16 +10,10 @@ using System.Threading.Tasks;
 
 namespace GA_Intergado.CR2.EntityFrameworkCore.Persistence.Repository
 {
-    public class RecipeRepository : RespositoryDefault<IngredientPlace>, IRecipeRepository
+    public class RecipeRepository : RespositoryDefault<Recipe>, IRecipeRepository
     {
-        public static IRespositoryDefault<Recipe> Create()
+        public RecipeRepository(MyDbContext context) : base(context)
         {
-            throw new NotImplementedException();
-        }
-
-        public void InsertOrUpdate(Recipe entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -7,9 +7,14 @@ namespace GA_Intergado.CR2.EntityFrameworkCore.Persistence;
 
 public partial class MyDbContext : DbContext
 {
+    public MyDbContext()
+    {
+
+    }
     public MyDbContext(DbContextOptions<MyDbContext> options)
         : base(options)
     {
+        //Database.Migrate();
     }
     public DbSet<IngredientPlace> IngredientPlaces { get; set; }
     public DbSet<Ingredient> Ingredients { get; set; }

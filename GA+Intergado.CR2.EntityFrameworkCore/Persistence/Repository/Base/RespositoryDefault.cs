@@ -1,17 +1,40 @@
-﻿using GA_Intergado.CR2.Domain.Persistence.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GA_Intergado.CR2.Domain.Common.Persistence.Base;
+using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+
 
 namespace GA_Intergado.CR2.EntityFrameworkCore.Persistence.Repository.Base
 {
-    public class RespositoryDefault<T> : IRespositoryDefault<T> where T : class
+    public class RespositoryDefault<T> : IRepositoryDefault<T> where T : class
     {
+        private MyDbContext _context;
+
+        public RespositoryDefault(MyDbContext context)
+        {
+            _context = context;
+        }
+
         public void InsertOrUpdate(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            this._context.Add(entity);
+            this._context.SaveChanges();
+        }
+
+        public void Add(T entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            this._context.Add(entity);
+            this._context.SaveChanges();
+        }
+        
+        public List<T> GetAll()
+        {
+            return _context.Set<T>().ToList<T>();
         }
     }
 }

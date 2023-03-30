@@ -36,7 +36,7 @@ namespace GA_Intergado.CR2.EntityFrameworkCore.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("status")
+                    b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -74,7 +74,7 @@ namespace GA_Intergado.CR2.EntityFrameworkCore.Migrations
                     b.Property<Guid>("PlaceId")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("status")
+                    b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -109,7 +109,7 @@ namespace GA_Intergado.CR2.EntityFrameworkCore.Migrations
                     b.Property<int>("Version")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("status")
+                    b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -140,7 +140,7 @@ namespace GA_Intergado.CR2.EntityFrameworkCore.Migrations
                     b.Property<int>("UserType")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("status")
+                    b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -171,7 +171,7 @@ namespace GA_Intergado.CR2.EntityFrameworkCore.Migrations
                             b1.Property<int>("Order")
                                 .HasColumnType("INTEGER");
 
-                            b1.Property<int>("status")
+                            b1.Property<int>("Status")
                                 .HasColumnType("INTEGER");
 
                             b1.HasKey("Id", "RecipeId");

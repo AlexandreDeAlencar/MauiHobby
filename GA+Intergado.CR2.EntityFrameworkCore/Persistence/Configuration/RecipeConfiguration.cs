@@ -41,7 +41,7 @@ namespace GA_Intergado.CR2.EntityFrameworkCore.Persistence.Configuration
                     id => id.Value,
                     value => UserId.Create(value));
 
-            builder.Property(x => x.status);
+            builder.Property(x => x.Status);
             
             builder
                 .Property(m => m.LastModifiedDateTime);
@@ -82,7 +82,7 @@ namespace GA_Intergado.CR2.EntityFrameworkCore.Persistence.Configuration
                        id => id.Value,
                        value => UserId.Create(value));
 
-                builder.Property(x => x.status);
+                builder.Property(x => x.Status);
 
                 builder
                     .Property(m => m.LastModifiedDateTime);

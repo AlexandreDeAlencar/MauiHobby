@@ -1,36 +1,54 @@
 ﻿using GA_Intergado.CR2.App.Common.UnitOfWork;
+using GA_Intergado.CR2.Domain.Common.Persistence.Base;
 using GA_Intergado.CR2.Domain.IngredientPlaces;
 using GA_Intergado.CR2.Domain.Ingredients;
 using GA_Intergado.CR2.Domain.Recipes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GA_Intergado.CR2.Domain.Recipes.ValueObjects;
+using GA_Intergado.CR2.Domain.Users;
+using GA_Intergado.CR2.EntityFrameworkCore.Persistence.Repository.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace GA_Intergado.CR2.EntityFrameworkCore.Persistence.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public IIngredientPlaceRepository IngredientPlaceRepository => throw new NotImplementedException();
+        private MyDbContext _context;
 
-        public IIngredientRepository IngredientRepository => throw new NotImplementedException();
+        public IIngredientPlaceRepository IngredientPlaces { get; private set; }
 
-        public IRecipeRepository ReceitaRepository => throw new NotImplementedException();
+        public IIngredientRepository Ingredients { get; private set; }
+
+        public IRecipeRepository Recipes { get; private set; }
+
+        public IUserRepository Users { get; private set; }
+
+        public UnitOfWork(MyDbContext context
+            , IIngredientPlaceRepository ingredientPlaces
+            , IIngredientRepository ingredients
+            , IRecipeRepository recipes
+            , IUserRepository users
+            )
+        {
+            _context = context;
+            IngredientPlaces = ingredientPlaces;
+            Ingredients = ingredients;
+            Recipes = recipes;
+            Users = users;
+        }
 
         public int Complete()
         {
-            throw new NotImplementedException();
+            return _context.SaveChanges();
+        }
+
+        public IRepositoryDefault<T> CreateRepositoryDefault<T>() where T : class, new()
+        {
+            return new RespositoryDefault<T>(_context);
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
-        }
-
-        public int InsertOrUpdate(Type type, object obj)
-        {
-            throw new NotImplementedException();
+            _context.Dispose();
         }
     }
 }
