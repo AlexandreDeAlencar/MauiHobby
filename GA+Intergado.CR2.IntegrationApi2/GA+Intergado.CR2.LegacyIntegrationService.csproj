@@ -19,4 +19,8 @@
     <ProjectReference Include="..\GA+Intergado.CR2.Domain\GA+Intergado.CR2.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
 </Project>

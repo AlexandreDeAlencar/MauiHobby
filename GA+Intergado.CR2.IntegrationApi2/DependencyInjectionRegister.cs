@@ -1,5 +1,5 @@
 ﻿using GA_Intergado.CR2.App.ServerIntegration.Services;
-using GA_Intergado.CR2.IntegrationApi2;
+using GA_Intergado.CR2.LegacyIntegrationService;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GA_Intergado.CR2.App

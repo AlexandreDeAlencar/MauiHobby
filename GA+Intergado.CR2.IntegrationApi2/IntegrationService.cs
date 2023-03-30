@@ -12,7 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace GA_Intergado.CR2.IntegrationApi2
+namespace GA_Intergado.CR2.LegacyIntegrationService
 {
     public class IntegrationService : IIntegrationService
     {
@@ -69,7 +69,7 @@ namespace GA_Intergado.CR2.IntegrationApi2
             }
         }
 
-        public string Download<T>(ItemEntityData itemEntity) where T : class
+        public List<T> Download<T>(ItemEntityData itemEntity) where T : class
         {
 
             Client.Timeout = CLIENT_CONNECTION_TIMEOUT;
@@ -94,12 +94,11 @@ namespace GA_Intergado.CR2.IntegrationApi2
                 {
                     name += (string)jObject["NOME"] + "\n"; // Replace "name" with the desired key
                 }
-                return name;
 
                 List<T> responseData = Newtonsoft.Json.JsonConvert.DeserializeObject<List<T>>(response.Content);
                 response.Data = responseData;
 
-                return "";
+                return responseData;
             }
             catch (Exception ex)
             {
@@ -107,7 +106,7 @@ namespace GA_Intergado.CR2.IntegrationApi2
             }
         }
 
-        public string Upload<T>(ItemEntityData itemEntity, List<T> uploadList) where T : class
+        public List<T> Upload<T>(ItemEntityData itemEntity, List<T> uploadList) where T : class
         {
 
             var json = JsonConvert.SerializeObject(uploadList);
@@ -134,7 +133,7 @@ namespace GA_Intergado.CR2.IntegrationApi2
                     throw new Exception(response.Content);
                 }
 
-                return "";
+                return uploadList;
 
             }
             catch (Exception ex)
