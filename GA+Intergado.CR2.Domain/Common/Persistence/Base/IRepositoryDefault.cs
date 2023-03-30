@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GA_Intergado.CR2.Domain.Persistence.Base
+namespace GA_Intergado.CR2.Domain.Common.Persistence.Base
 {
-    public interface IRespositoryDefault<T> where T : class
+    public interface IRepositoryDefault<T> where T : class
     {
         void InsertOrUpdate(T entity);
+        List<T> GetAll();
+        void Add(T entity);
     }
 }

@@ -28,7 +28,7 @@ namespace GA_Intergado.CR2.Domain.Recipes.Entities
         public int Order { get; private set; }
         public decimal NaturalMatterPercentage { get; private set; }
 
-        [NotMapped]
+  
         public IReadOnlyList<ProductionOrderIngredientId> ProductionOrderIngredientIds => _productionOrderIngredientIds.AsReadOnly();
         public static RecipeIngredient Create(
             UserId modifierUserId

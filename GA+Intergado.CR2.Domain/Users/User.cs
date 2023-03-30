@@ -42,5 +42,12 @@ namespace GA_Intergado.CR2.Domain.Users
                 , userType
                 );
         }
+#pragma warning disable CS8618
+        public User()
+        {
+
+        }
+
+#pragma warning restore CS8618
     }
 }

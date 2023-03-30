@@ -8,7 +8,7 @@ namespace GA_Intergado.CR2.Domain.Common.Models
     {
         public TId Id { get; protected set; }
         public DateTime LastModifiedDateTime { get; private set; }
-        public StatusType status { get; private set; }
+        public StatusType Status { get; private set; }
         public UserId ModifierUserId { get; private set; }
         protected Entity(
                 TId id

@@ -56,7 +56,7 @@ namespace GA_Intergado.CR2.Domain.Recipes
         }
 
         #pragma warning disable CS8618
-        protected Recipe()
+        public Recipe()
         {
 
         }
