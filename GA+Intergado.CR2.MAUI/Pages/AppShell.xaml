@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="GA_Intergado.CR2.MAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GA_Intergado.CR2.MAUI.Pages"
+    xmlns:loc="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+    Shell.FlyoutBehavior="Disabled">
+
+
+    <!--Loading Page-->
+    <ShellContent
+        Title="{loc:Translate LoadingHeader}"
+        ContentTemplate="{DataTemplate local:LoadingPage}"
+        Route="loading" />
+
+    <!--Login Page-->
+    <ShellContent 
+        Title="{loc:Translate LoginHeader}" 
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        Route="login"/>
+    <!--Main Page-->
+    <TabBar >
+        <Tab Title="{loc:Translate HomeHeader}" Icon="house_door_fill.png">
+            <ShellContent
+                Icon="house_door_fill.png"
+        Title="Menu Principal"
+        ContentTemplate="{DataTemplate local:HomePage}"
+        Route="home" />
+
+        </Tab>
+        <Tab Title="{loc:Translate ServerIntegrationHeader}" Icon="search.png">
+            <ShellContent
+            Icon="search.png"
+            Title="Integrador de Receitas"
+            ContentTemplate="{DataTemplate local:ServerIntegrationPage}"
+            Route="serverIntegration" />
+
+        </Tab>
+        <Tab Title="{loc:Translate SettingsHeader}" Icon="gear_fill.png">
+            <ShellContent
+                Icon="house_door_fill.png"
+        Title="Configuração"
+        ContentTemplate="{DataTemplate local:SettingsPage}"
+        Route="settings" />
+        </Tab>
+    </TabBar>
+
+</Shell>

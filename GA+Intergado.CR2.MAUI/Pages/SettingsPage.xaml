@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GA_Intergado.CR2.MAUI.Pages.SettingsPage"
+             xmlns:loc="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             Title="{loc:Translate SettingsHeader}">
+    
+    <Grid RowDefinitions="2*,*" Margin="0,10,0,0">
+        <VerticalStackLayout Padding="10" VerticalOptions="Center" HorizontalOptions="Center">
+            <Frame BorderColor="Gray"
+               CornerRadius="10"
+               HasShadow="True"
+               >
+                <Frame.Shadow>
+                    <Shadow Brush="Black"/>
+                </Frame.Shadow>
+                <StackLayout Padding="10">
+                    
+                    <VerticalStackLayout Padding="10">
+                        <HorizontalStackLayout Padding="0" Margin="0,5,0,0">
+                            <Label FontSize="20" Text="{loc:Translate ChangeLanguage}" FontAttributes="Bold"/>
+                            <Label FontSize="20" Text=" : " FontAttributes="Bold"/>
+                            <Label FontSize="20" Text="{Binding Language}" FontAttributes="Bold"/>
+                            <Switch 
+                                AbsoluteLayout.LayoutBounds="0.7,0,60,35"
+                                AbsoluteLayout.LayoutFlags="XProportional,YProportional" 
+                                IsToggled="{Binding IsPortuguese}" Margin="15, 0"  />
+                        </HorizontalStackLayout>
+
+                        <VerticalStackLayout Padding="0" Margin="0,5,0,0">
+                            <Label FontSize="20" Text="{loc:Translate ServerIntegrationHostAddress}" FontAttributes="Bold"/>
+                            <Entry Text="{Binding ServerIntegrationAdress}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Padding="0" Margin="0,5,0,0">
+                            <Button
+                                Margin="0,20,0,0"
+                                Text="{loc:Translate SaveSettings}"
+                                Command="{Binding SaveConfigurationCommand}"
+                                />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </StackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
