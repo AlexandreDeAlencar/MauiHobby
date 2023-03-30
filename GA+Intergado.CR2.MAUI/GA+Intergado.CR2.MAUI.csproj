@@ -10,6 +10,8 @@
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>11.0</LangVersion>
 
 		<!-- Display name -->
 		<ApplicationTitle>GA+Intergado.CR2.MAUI</ApplicationTitle>
@@ -49,11 +51,29 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\gain.png" />
+	  <None Remove="Settings\appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Settings\appsettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="ErrorOr" Version="1.2.1" />
+		<PackageReference Include="LocalizationResourceManager.Maui" Version="1.0.3" />
 		<PackageReference Include="Mapster" Version="7.3.0" />
-		<PackageReference Include="MediatR" Version="12.0.0" />
+		<PackageReference Include="MediatR" Version="12.0.1" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+		<PackageReference Include="MetroLog.Maui" Version="2.1.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="ServiceLocation" Version="1.3.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -61,7 +81,94 @@
 	  <ProjectReference Include="..\GA+Intergado.CR2.Domain.Shared\GA+Intergado.CR2.Domain.Shared.csproj" />
 	  <ProjectReference Include="..\GA+Intergado.CR2.Domain\GA+Intergado.CR2.Domain.csproj" />
 	  <ProjectReference Include="..\GA+Intergado.CR2.EntityFrameworkCore\GA+Intergado.CR2.EntityFrameworkCore.csproj" />
-	  <ProjectReference Include="..\GA+Intergado.CR2.IntegrationApi2\GA+Intergado.CR2.IntegrationApi2.csproj" />
+	  <ProjectReference Include="..\GA+Intergado.CR2.ExternalDevices\GA+Intergado.CR2.ExternalDevices.csproj" />
+	  <ProjectReference Include="..\GA+Intergado.CR2.LegacyIntegrationService\GA+Intergado.CR2.IntegrationService.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Pages\ServerIntegrationPage.xaml.cs">
+	    <DependentUpon>ServerIntegrationPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Languages\Common\CommonResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>CommonResources.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Languages\Home\HomeResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>HomeResources.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Languages\Loading\Loading.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Loading.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Languages\Loading\LoadingResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>LoadingResources.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Languages\Login\LoginResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>LoginResources.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Languages\ServerIntegration\ServerIntegrationResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>ServerIntegrationResources.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Languages\Settings\SettingsResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>SettingsResources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Languages\Common\CommonResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Languages\Home\HomeResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>HomeResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Languages\Loading\Loading.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Loading.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Languages\Loading\LoadingResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>LoadingResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Languages\Login\LoginResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>LoginResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Languages\ServerIntegration\ServerIntegrationResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>ServerIntegrationResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Languages\Settings\SettingsResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>SettingsResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\LoadingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
 </Project>

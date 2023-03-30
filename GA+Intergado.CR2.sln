@@ -9,13 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GA+Intergado.CR2.Domain", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GA+Intergado.CR2.EntityFrameworkCore", "GA+Intergado.CR2.EntityFrameworkCore\GA+Intergado.CR2.EntityFrameworkCore.csproj", "{D7109C08-129B-405D-8936-5C2908C9AFEB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GA+Intergado.CR2.IntegrationApi2", "GA+Intergado.CR2.IntegrationApi2\GA+Intergado.CR2.IntegrationApi2.csproj", "{7E266758-F618-4CBC-8AAF-515425FCA1E9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GA+Intergado.CR2.App", "GA+Intergado.CR2.Application\GA+Intergado.CR2.App.csproj", "{4C0ED5A8-765B-47C9-AE20-D9CA8DA8664F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GA+Intergado.CR2.HttpApi", "GA+Intergado.CR2.HttpApi\GA+Intergado.CR2.HttpApi.csproj", "{4A8CB9E0-992A-4848-9996-5FF909AEA450}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GA+Intergado.CR2.HttpApi", "GA+Intergado.CR2.HttpApi\GA+Intergado.CR2.HttpApi.csproj", "{4A8CB9E0-992A-4848-9996-5FF909AEA450}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GA+Intergado.CR2.MAUI", "GA+Intergado.CR2.MAUI\GA+Intergado.CR2.MAUI.csproj", "{AE7D5BEF-7C0F-4D56-9DEC-0214AF2B5DD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GA+Intergado.CR2.MAUI", "GA+Intergado.CR2.MAUI\GA+Intergado.CR2.MAUI.csproj", "{AE7D5BEF-7C0F-4D56-9DEC-0214AF2B5DD0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GA+Intergado.CR2.ExternalDevices", "GA+Intergado.CR2.ExternalDevices\GA+Intergado.CR2.ExternalDevices.csproj", "{5D8BFDBF-48D9-4BD4-BA7D-E5DBC26DA13B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GA+Intergado.CR2.IntegrationService", "GA+Intergado.CR2.LegacyIntegrationService\GA+Intergado.CR2.IntegrationService.csproj", "{B5263C68-B3A4-4F69-A04E-6B64D267AD55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +37,6 @@ Global
 		{D7109C08-129B-405D-8936-5C2908C9AFEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7109C08-129B-405D-8936-5C2908C9AFEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7109C08-129B-405D-8936-5C2908C9AFEB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E266758-F618-4CBC-8AAF-515425FCA1E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E266758-F618-4CBC-8AAF-515425FCA1E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E266758-F618-4CBC-8AAF-515425FCA1E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E266758-F618-4CBC-8AAF-515425FCA1E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C0ED5A8-765B-47C9-AE20-D9CA8DA8664F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C0ED5A8-765B-47C9-AE20-D9CA8DA8664F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C0ED5A8-765B-47C9-AE20-D9CA8DA8664F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,6 +51,14 @@ Global
 		{AE7D5BEF-7C0F-4D56-9DEC-0214AF2B5DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE7D5BEF-7C0F-4D56-9DEC-0214AF2B5DD0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AE7D5BEF-7C0F-4D56-9DEC-0214AF2B5DD0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5D8BFDBF-48D9-4BD4-BA7D-E5DBC26DA13B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D8BFDBF-48D9-4BD4-BA7D-E5DBC26DA13B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D8BFDBF-48D9-4BD4-BA7D-E5DBC26DA13B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D8BFDBF-48D9-4BD4-BA7D-E5DBC26DA13B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5263C68-B3A4-4F69-A04E-6B64D267AD55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5263C68-B3A4-4F69-A04E-6B64D267AD55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5263C68-B3A4-4F69-A04E-6B64D267AD55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5263C68-B3A4-4F69-A04E-6B64D267AD55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
